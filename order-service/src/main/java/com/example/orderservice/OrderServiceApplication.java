@@ -9,11 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableFeignClients
 @EnableEurekaClient
 @EnableHystrix
+@EnableSwagger2
 public class OrderServiceApplication implements CommandLineRunner {
 
     private OrderDao orderDao;
@@ -34,5 +39,11 @@ public class OrderServiceApplication implements CommandLineRunner {
         orderDao.save(new Order("Item-C","Customer-C"));
         orderDao.save(new Order("Item-D","Customer-D"));
 
+    }
+
+    @Bean
+    public Docket swaggerDocker()
+    {
+        return new Docket(DocumentationType.SWAGGER_2);
     }
 }

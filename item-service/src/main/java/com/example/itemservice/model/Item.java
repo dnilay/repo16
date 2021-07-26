@@ -14,7 +14,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "item_id")
     private Integer itemId;
-    @Column(name = "item_name")
+    @Column(name = "item_name",unique = true)
     private String itemName;
     @Column(name = "item_price")
     private double itemPrice;
